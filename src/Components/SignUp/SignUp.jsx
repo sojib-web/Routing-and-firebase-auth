@@ -1,8 +1,11 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import React from "react";
+// @ts-nocheck
+
+import React, { useContext } from "react";
 import { NavLink } from "react-router";
-import { auth } from "../../Firebase/Firebase_config";
+
+import { AuthContext } from "../../Context/AuthContext";
 const SignUp = () => {
+  const { SignUp } = useContext(AuthContext);
   const handleFormSubmitWithSignUp = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -13,7 +16,7 @@ const SignUp = () => {
 
     console.log(name, email, password, confirmPassword);
 
-    createUserWithEmailAndPassword(auth, email, password)
+    SignUp(email, password)
       .then((result) => {
         console.log(result);
       })

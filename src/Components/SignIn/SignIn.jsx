@@ -1,8 +1,10 @@
-import React from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../Firebase/Firebase_config";
+import React, { useContext } from "react";
+
 import { NavLink } from "react-router";
+import { AuthContext } from "../../Context/AuthContext";
 const SignIn = () => {
+  // @ts-ignore
+  const { SignIn } = useContext(AuthContext);
   const handleFormSubmitWithSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -10,7 +12,7 @@ const SignIn = () => {
     const password = form.password.value;
     console.log(email, password);
 
-    signInWithEmailAndPassword(auth, email, password)
+    SignIn(email, password)
       .then((result) => {
         console.log(result);
       })
