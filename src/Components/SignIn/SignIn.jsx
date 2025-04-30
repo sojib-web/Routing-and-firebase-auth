@@ -15,6 +15,7 @@ const SignIn = () => {
     SignIn(email, password)
       .then((result) => {
         console.log(result);
+        // const currentUser = result.user;
       })
       .catch((error) => {
         console.log(error);
@@ -31,7 +32,7 @@ const SignIn = () => {
           <NavLink
             to="/signup"
             rel="noopener noreferrer"
-            className="focus:underline hover:underline"
+            className="hover:underline text-green-500"
           >
             Sign up here
           </NavLink>
@@ -128,7 +129,7 @@ const SignIn = () => {
           </div>
           <button
             type="submit"
-            className="w-full cursor-pointer px-8 py-3 font-semibold rounded-md dark:bg-green-600 dark:text-gray-50"
+            className="w-full px-8 py-3 font-semibold rounded-md bg-green-600 text-white cursor-pointer"
           >
             Sign in
           </button>

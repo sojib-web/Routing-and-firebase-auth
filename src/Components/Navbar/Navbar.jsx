@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router";
+import { AuthContext } from "../../Context/AuthContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   console.log(pathname);
+
+  // @ts-ignore
+  const { handleSignOut } = useContext(AuthContext);
 
   const links = (
     <>
@@ -75,6 +79,12 @@ const Navbar = () => {
           }`}
         >
           SignIn
+        </button>
+        <button
+          onClick={handleSignOut}
+          className={`btn btn-outline rounded-2xl btn-sm`}
+        >
+          Log out
         </button>
       </div>
     </div>

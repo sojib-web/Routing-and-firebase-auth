@@ -16,9 +16,28 @@ const SignUp = () => {
 
     console.log(name, email, password, confirmPassword);
 
+    if (password.length < 6) {
+      alert(" Password must be equal or grater than 6");
+      return;
+    }
+    if (password !== confirmPassword) {
+      alert(" Password  and  confirm Password must be same ");
+      return;
+    }
+    const strongPasswordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+
+    if (!strongPasswordRegex.test(password)) {
+      alert(
+        "Password must contain at least 6 characters, including uppercase, lowercase, number, and special character."
+      );
+      return;
+    }
+
     SignUp(email, password)
       .then((result) => {
         console.log(result);
+        alert("Successful");
       })
       .catch((error) => {
         console.log(error);
@@ -69,7 +88,7 @@ const SignUp = () => {
                 </label>
               </div>
               <input
-                type="password"
+                type="text"
                 name="password"
                 id="password"
                 placeholder="*****"
@@ -82,7 +101,7 @@ const SignUp = () => {
                 Confirm Password
               </label>
               <input
-                type="password"
+                type="text"
                 name="confirm_password"
                 id="confirm_password"
                 placeholder="*****"
@@ -91,21 +110,15 @@ const SignUp = () => {
             </div>
           </div>
           <div className="space-y-2">
-            <div>
-              <button
-                type="submit"
-                className="w-full px-8 py-3 font-semibold rounded-md dark:bg-green-600 dark:text-gray-50 cursor-pointer"
-              >
-                Sign Up
-              </button>
-            </div>
-            <p className="px-6 text-sm text-center dark:text-gray-600">
-              Already have an account?
-              <NavLink
-                to="/signin"
-                rel="noopener noreferrer"
-                className="hover:underline dark:text-green-600"
-              >
+            <button
+              type="submit"
+              className="w-full px-8 py-3 font-semibold rounded-md bg-green-600 text-white cursor-pointer"
+            >
+              Sign Up
+            </button>
+            <p className="px-6 text-sm text-center text-gray-400">
+              Already have an account?{" "}
+              <NavLink to="/signin" className="hover:underline text-green-500">
                 Sign In
               </NavLink>
               .
